@@ -2,12 +2,12 @@
 #include <GL/glut.h>
 #include <math.h>
 
-// ================= GLOBAL =================
+
 float carX = -80;
 float birdX = -80;
 bool isDay = true;
 
-// ================= CIRCLE =================
+
 void drawCircle(float x, float y, float r)
 {
     glBegin(GL_POLYGON);
@@ -19,7 +19,6 @@ void drawCircle(float x, float y, float r)
     glEnd();
 }
 
-// ================= SKY =================
 void drawSky()
 {
     if (isDay) glColor3f(0.5, 0.8, 1.0);
@@ -33,7 +32,6 @@ void drawSky()
     glEnd();
 }
 
-// ================= SUN/MOON =================
 void drawSunMoon()
 {
     if (isDay) glColor3f(1,1,0);
@@ -42,10 +40,10 @@ void drawSunMoon()
     drawCircle(70,70,10);
 }
 
-// ================= BUILDINGS =================
+
 void drawBuildings()
 {
-    // Main Building
+
     glColor3f(0.3,0.3,0.7);
     glBegin(GL_POLYGON);
     glVertex2f(-80,0);
@@ -54,7 +52,7 @@ void drawBuildings()
     glVertex2f(-80,70);
     glEnd();
 
-    // Windows
+
     glColor3f(1,1,0);
     for(int y=10; y<60; y+=15)
     {
@@ -69,7 +67,7 @@ void drawBuildings()
         }
     }
 
-    // Second Building
+
     glColor3f(0.6,0.3,0.3);
     glBegin(GL_POLYGON);
     glVertex2f(-30,0);
@@ -79,10 +77,10 @@ void drawBuildings()
     glEnd();
 }
 
-// ================= TREE =================
+
 void drawTree(float x)
 {
-    // trunk
+
     glColor3f(0.4,0.2,0);
     glBegin(GL_POLYGON);
     glVertex2f(x-2,0);
@@ -91,15 +89,15 @@ void drawTree(float x)
     glVertex2f(x-2,15);
     glEnd();
 
-    // leaves
+
     glColor3f(0,0.6,0);
     drawCircle(x,20,8);
 }
 
-// ================= TRAFFIC LIGHT =================
+
 void drawTrafficLight(float x)
 {
-    // pole
+
     glColor3f(0.2,0.2,0.2);
     glBegin(GL_POLYGON);
     glVertex2f(x-1,0);
@@ -108,7 +106,7 @@ void drawTrafficLight(float x)
     glVertex2f(x-1,25);
     glEnd();
 
-    // lights
+
     glColor3f(1,0,0);
     drawCircle(x,22,2);
 
@@ -119,7 +117,7 @@ void drawTrafficLight(float x)
     drawCircle(x,12,2);
 }
 
-// ================= ROAD =================
+
 void drawRoad()
 {
     glColor3f(0.2,0.2,0.2);
@@ -132,7 +130,7 @@ void drawRoad()
     glEnd();
 }
 
-// ================= CAR =================
+
 void drawCar()
 {
     glColor3f(0.8,0.1,0.1);
@@ -156,7 +154,7 @@ void drawCar()
     drawCircle(carX+12,-7,5);
 }
 
-// ================= BIRDS =================
+
 void drawBird(float x,float y)
 {
     glColor3f(0,0,0);
@@ -179,7 +177,7 @@ void drawBirds()
     drawBird(birdX-20,72);
 }
 
-// ================= DISPLAY =================
+
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -200,7 +198,7 @@ void display()
     glFlush();
 }
 
-// ================= UPDATE =================
+
 void update(int v)
 {
     carX += 0.8;
@@ -213,14 +211,13 @@ void update(int v)
     glutTimerFunc(16, update, 0);
 }
 
-// ================= KEYBOARD =================
 void keyboard(unsigned char key,int x,int y)
 {
     if(key==' ')
         isDay = !isDay;
 }
 
-// ================= RESHAPE =================
+
 void reshape(int w,int h)
 {
     glViewport(0,0,w,h);
@@ -232,13 +229,13 @@ void reshape(int w,int h)
     glMatrixMode(GL_MODELVIEW);
 }
 
-// ================= INIT =================
+
 void init()
 {
     glClearColor(1,1,1,1);
 }
 
-// ================= MAIN =================
+
 int main(int argc,char** argv)
 {
     glutInit(&argc,argv);
